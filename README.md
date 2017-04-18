@@ -89,6 +89,7 @@ Note: The above component written is a speical syntax called JSX which is very s
 Note: React internally converts JSX into javascript syntax.
 
 Dynamically rendering DOM object label etc also possible using properties like this.
+
 	const Button=function(props){
 		return (
 			<button>{props.label}</button>
@@ -99,6 +100,7 @@ Dynamically rendering DOM object label etc also possible using properties like t
 Note:props is an object that holds all values that were passed when rendering a component.
 
 To implement the above using Classes,
+
 	class Button extends React.Component{
 		render(){
 			return(
@@ -109,6 +111,7 @@ To implement the above using Classes,
 	ReactDOM.render(<Button label="DO"/>,mountNode);
 	
 Note:Instead of props object we can use state object also to represent the above. For ex,
+
 	class Button extends React.Component{
 		state = {counter:0};
 		render(){
@@ -120,12 +123,15 @@ Note:Instead of props object we can use state object also to represent the above
 	ReactDOM.render(<Button />,mountNode);
 	
 If we need event handler on button, then we need to define DOM event handler like this:
+
 	<button onClick={handleClick}>{this.state.counter}</button>
 	
 Note: Unlike DOM event handler which uses a string, React uses curly braces like above. handleClick represents a global function or you can use inline function like this.
+	
 	<button onClick={() => doSomeThing()}>{this.state.counter}</button>
 
 Ex: Lets increment the counter by 1 using the below example.
+	
 	class Button extends React.Component{
 		state = { label:0};
 		incrementCounter = () => {
@@ -143,15 +149,16 @@ Ex: Lets increment the counter by 1 using the below example.
 Note: setState() method is available with every class component instance to update.
 *****
 Note: Since we are using setState method to read the value and update its value, there can be race condition. To eliminate this, we can use prevState object provided by react to update the state value without any race condition issues.
-	 incrementCounter = () => {
-    	this.setState((prevState)=> ({
-      	counter:prevState.counter+1
-      }))
-    };
+
+	incrementCounter = () => 
+	{
+		this.setState((prevState)=> ({counter:prevState.counter+1}))
+    	};
 
 Example:
 --------
 Instead of changing the button values, lets create another component which will change upon click of the button.
+	
 	class Button extends React.Component{
 		render(){
 			return(
@@ -167,46 +174,47 @@ Instead of changing the button values, lets create another component which will 
 		)
 	}
   
-  class App extends React.Component{
-    state = { counter:0};
-    incrementCounter = () => {
-    	this.setState((prevState)=> ({
-      	counter:prevState.counter+1
-      }))
-    };
-    render(){
-		return(
-		<div>
-          <Button increment={this.incrementCounter}/>
-          <Result counter={this.state.counter}/>
-        </div>
-      )
-    }
-  }
-ReactDOM.render(<App />,mountNode);
+	  class App extends React.Component{
+	    state = { counter:0};
+	    incrementCounter = () => {
+		this.setState((prevState)=> ({
+		counter:prevState.counter+1
+	      }))
+	    };
+	    render(){
+			return(
+			<div>
+		  <Button increment={this.incrementCounter}/>
+		  <Result counter={this.state.counter}/>
+		</div>
+	      )
+	    }
+	  }
+	ReactDOM.render(<App />,mountNode);
 
 Note: Using react we can render two components. To render two different components we need to create another class(App) like above.
 Note: If an event on one component has to take effect on another, then the state and event handling method has to be defined in the parent component(App) like above.
 
 Note: We know components are reusable. To reuse the above components for multiple increment values, we need to modify the Button component and define those in App component like this.
+
 	//button component will pass the increment value as argument
 	<button onClick={() => this.props.increment(this.props.incrementValue)}>+{this.props.incrementValue}</button>
 	
 	//App component incrementCounter method takes value as an argument
-	incrementCounter = (incrementValue) => {
-    	this.setState((prevState)=> ({
-      	counter:prevState.counter+ incrementValue
-      }))
-    };
+	incrementCounter = (incrementValue) => 
+	{
+    		this.setState((prevState)=> ({counter:prevState.counter+ incrementValue}))
+    	};
 	<Button incrementValue={1} increment={this.incrementCounter}/>
-    <Button incrementValue={5} increment={this.incrementCounter}/>
-    <Button incrementValue={10} increment={this.incrementCounter}/>
-    <Button incrementValue={20} increment={this.incrementCounter}/>
+	<Button incrementValue={5} increment={this.incrementCounter}/>
+	<Button incrementValue={10} increment={this.incrementCounter}/>
+	<Button incrementValue={20} increment={this.incrementCounter}/>
 
 Note: The button component can be written in much cleaner way like this.
+	
 	handleClick = () => {
-    	this.props.increment(this.props.incrementValue)
-    }
+    		this.props.increment(this.props.incrementValue)
+        }
    
 	render(){
 		return(
@@ -219,6 +227,7 @@ Note: Get Familiar with React Dev tools and play around with some react websites
 Working with Data
 -----------------
 Instead of hardcoding values, we can work with an example to display git users with image,name and company name. Here is the code.
+	
 	const Card = (props) => {
 		return(
 		<div style={{margin: '1em'}}>
@@ -237,6 +246,7 @@ Instead of hardcoding values, we can work with an example to display git users w
 	ReactDOM.render(<Card/>,mountNode);
 
 Note: Instead of hardcoding the values, we can pass an array like this.
+	
 	const Card = (props) => {
 		return(
 		<div style={{margin: '1em'}}>
