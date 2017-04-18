@@ -12,11 +12,11 @@ React is declarative. i.e. we describe UI's with react what we want not how to d
 React is compared with view in MVC.
 
 React has 3 main desgin concepts.
-1)Components. --> we describe UI using components. Components are like functions in js. These are reusable. Components can contain other components.
+1)Components --> we describe UI using components. Components are like functions in js. These are reusable. Components can contain other components.
 
 Note: unlike functions, react component can have private state that hold data that may change over time.
 
-2)Reactive updates --> when the state of a component(the input) changes the UI it represents the o/p)changes as well.
+2)Reactive updates --> when the state of a component(the input) changes the UI it represents (the o/p)changes as well.
 
 Note: React will take the state changes and automatically updates the browser.
 
@@ -42,22 +42,22 @@ This is the simplest form of a react component. It receives an object of type pr
 			<elementOrComponent ../>
 		);
 	}
-	ReactDOM.render(<Hello />, mountNode); //where mountNode is the DOM element of your HTML
+	ReactDOM.render(<MyComponent />, mountNode); //where mountNode is the DOM element of your HTML
 	
 Ex: const Button=function(){
-	return (
-		<button>GO</button>
-	  
-	);
+		return (
+			<button>GO</button>
+		  
+		);
 	}
 	ReactDOM.render(<Button/>,mountNode);	
 
 Note: Instead of hardcoding the button label, we can pass lable using properties object.
-Note: To practice react examples directly (https://jscomplete.com/repl). 	
+Note: To practice react examples online directly (https://jscomplete.com/repl). 	
 
 Class Component
 ---------------
-Class Component is a more featured way of defining a react component. It acts as a function that receives a private internal state called as additional input along with props. This private internal state gives react its reactiveness. When the state of a class component changes react will automatically re-render that component.
+Class Component is a more featured way of defining a react component. It acts as a function that receives a private internal state along with props. This private internal state gives react its reactiveness. When the state of a class component changes react will automatically re-render that component.
 
 Note: state and properties have one difference. while the state can be changed, properties cannot be changed. Here is a simple example without any state and properties.
 
@@ -110,16 +110,16 @@ To implement the above using Classes,
 	
 Note:Instead of props object we can use state object also to represent the above. For ex,
 	class Button extends React.Component{
-		state = { counter:0};
+		state = {counter:0};
 		render(){
 			return(
 				<button>{this.state.counter}</button>
 			);
 	    }
 	}
-	ReactDOM.render(<Button label="DO"/>,mountNode);
+	ReactDOM.render(<Button />,mountNode);
 	
-If we need event handler on button, then we need to define like DOM event handler like this:
+If we need event handler on button, then we need to define DOM event handler like this:
 	<button onClick={handleClick}>{this.state.counter}</button>
 	
 Note: Unlike DOM event handler which uses a string, React uses curly braces like above. handleClick represents a global function or you can use inline function like this.
@@ -140,9 +140,9 @@ Ex: Lets increment the counter by 1 using the below example.
 		}
 	}
 
-Note: setState() method is available with every class component instance to update. 
+Note: setState() method is available with every class component instance to update.
 *****
-Note: Since we are using setState method to read the value and update its value, there can be race condition. To eliminate this, we can use prevState object provided by react to update the state value without any race condition issues like this.
+Note: Since we are using setState method to read the value and update its value, there can be race condition. To eliminate this, we can use prevState object provided by react to update the state value without any race condition issues.
 	 incrementCounter = () => {
     	this.setState((prevState)=> ({
       	counter:prevState.counter+1
@@ -183,7 +183,7 @@ Instead of changing the button values, lets create another component which will 
       )
     }
   }
-ReactDOM.render(<App />,mountNode);	
+ReactDOM.render(<App />,mountNode);
 
 Note: Using react we can render two components. To render two different components we need to create another class(App) like above.
 Note: If an event on one component has to take effect on another, then the state and event handling method has to be defined in the parent component(App) like above.
@@ -271,7 +271,7 @@ Note: Instead of hardcoding the values, we can pass an array like this.
 
 	ReactDOM.render(<CardList cards={data}/>,mountNode);
 
-Note: The syntax {...card} populate all the properties of card object. The operator ... is called as spread operator. Basically, it is spreads the card object with the values.
+Note: The syntax {...card} populate all the properties of card object. The operator ... is called as spread operator. Basically, it spreads the card object with the values.
 
 
 
