@@ -36,7 +36,8 @@ React components are two types. They are
 
 Function Component:
 -------------------
-This is the simplest form of a react component. It receives an object of type property(called as props) and it returns something that looks like an html, but it is actually a javascript syntax called as JSX. 
+This is the simplest form of a react component. It receives an object of type property(called as props) and it returns something that looks like an html, but it is actually a javascript syntax called as JSX.
+
 	const MyComponent = (props) => {
 		return(
 			<elementOrComponent ../>
@@ -44,13 +45,13 @@ This is the simplest form of a react component. It receives an object of type pr
 	}
 	ReactDOM.render(<MyComponent />, mountNode); //where mountNode is the DOM element of your HTML
 	
-Ex: const Button=function(){
-		return (
-			<button>GO</button>
-		  
-		);
-	}
-	ReactDOM.render(<Button/>,mountNode);	
+	Ex: const Button=function(){
+			return (
+				<button>GO</button>
+
+			);
+		}
+		ReactDOM.render(<Button/>,mountNode);	
 
 Note: Instead of hardcoding the button label, we can pass lable using properties object.
 Note: To practice react examples online directly (https://jscomplete.com/repl). 	
